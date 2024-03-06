@@ -2,6 +2,8 @@ import os, subprocess, json, sys, shutil
 from urllib.request import Request, urlopen
 from urllib.parse import urlparse
 
+# Will download or update LunarCore.jar for Dockerfile & StarRailData with LunarCore-Configs repos preparing resources directory for compose volume mount
+
 LUNAR_CORE_REPOSITORY = "https://github.com/Melledy/LunarCore"
 LUNAR_CORE_DOWNLOAD_URL = f"{LUNAR_CORE_REPOSITORY}/releases/latest/download/LunarCore.jar"
 
