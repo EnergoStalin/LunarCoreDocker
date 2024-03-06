@@ -73,6 +73,11 @@ def download_or_update_resources():
     if not os.path.exists(LATEST_LUNARCORE):
         download_file(LUNAR_CORE_DOWNLOAD_URL, LATEST_LUNARCORE)
 
+        if os.path.exists("LunarCore.jar"):
+            os.remove("LunarCore.jar")
+        # Symlink to allow Dockerfile just use LunarCore.jar as reference
+        os.symlink(LATEST_LUNARCORE, "LunarCore.jar")
+
         if not os.path.exists(LUNAR_CORE_CONFIGS_FOLDER):
             clone_repository(LUNAR_CORE_CONFIGS_GIT_URL)
         else:
