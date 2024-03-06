@@ -1,7 +1,4 @@
-resources
-mongodb
+downloads/**
+data/**
 
-StarRailData
-LunarCore-Configs
-
-*.jar
+!data/ssl

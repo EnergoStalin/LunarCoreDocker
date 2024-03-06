@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  lunarcore:
+    container_name: lunarcore
+    build:
+      context: .
+      tags:
+        - lunarcore:latest
+        - lunarcore:${LUNARCORE_VERSION}
+    tty: true
+    volumes:
+      - ./downloads/StarRailData:/app/resources
+      - ./data/data:/app/data
+      - ./data/ssl/keystore.p12:/app/keystore.p12
+      - ./data/config.json:/app/config.json
+    ports:
+      - 4443:443
+      - 23301:23301
