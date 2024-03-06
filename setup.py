@@ -68,6 +68,11 @@ def download_or_update_resources():
     returns true when updated false otherwise
     '''
     VERSION = github_get_latest_version(LUNAR_CORE_REPOSITORY)
+
+    with open("VERSION", "w") as f:
+        print(VERSION)
+        f.write(VERSION)
+
     LATEST_LUNARCORE = f"LunarCore{VERSION}.jar"
 
     if not os.path.exists(LATEST_LUNARCORE):
