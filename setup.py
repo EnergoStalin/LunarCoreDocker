@@ -63,7 +63,10 @@ def pull_repository(path):
         stderr=sys.stderr
     )
 
-def download_resources():
+def download_or_update_resources():
+    '''
+    returns true when updated false otherwise
+    '''
     VERSION = github_get_latest_version(LUNAR_CORE_REPOSITORY)
     LATEST_LUNARCORE = f"LunarCore{VERSION}.jar"
 
@@ -79,6 +82,9 @@ def download_resources():
             clone_repository(STARRAIL_DATA_GIT_URL)
         else:
             pull_repository(STARRAIL_DATA_FOLDER)
+        return True
+    else:
+        return False
 
 def build_resources():
     shutil.rmtree("resources", ignore_errors=True)
@@ -98,5 +104,5 @@ def build_resources():
     shutil.copytree(LUNAR_CORE_CONFIGS_FOLDER, "resources", ignore=ignore_git, dirs_exist_ok=True)
 
 if __name__ == "__main__":
-    download_resources()
-    build_resources()
+    if download_or_update_resources():
+        build_resources()
