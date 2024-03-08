@@ -12,8 +12,12 @@ services:
     volumes:
       - ./downloads/StarRailData:/app/resources
       - ./data/data:/app/data
-      - ./data/ssl/keystore.p12:/app/keystore.p12
-      - ./data/config.json:/app/config.json
+      - type: bind
+        source: ./data/ssl/keystore.p12
+        target: /app/keystore.p12
+      - type: bind
+        source: ./data/config.json
+        target: /app/config.json
     ports:
       - 4443:443
       - 23301:23301
